@@ -8,7 +8,6 @@ const val SECOND = 1000L
 const val MINUTE = 60 * SECOND
 const val HOUR = 60 * MINUTE
 const val DAY = 24 * HOUR
-const val YEAR = 365 * DAY
 
 fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String {
     val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
@@ -22,7 +21,6 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
         TimeUnits.MINUTE -> value * MINUTE
         TimeUnits.HOUR -> value * HOUR
         TimeUnits.DAY -> value * DAY
-        TimeUnits.YEAR -> value * YEAR
     }
     this.time = time
     return this
@@ -72,8 +70,7 @@ enum class TimeUnits {
     SECOND,
     MINUTE,
     HOUR,
-    DAY,
-    YEAR;
+    DAY;
 
     fun plural(count: Int): String {
         val abs = abs(count)
@@ -85,7 +82,6 @@ enum class TimeUnits {
                 MINUTE -> "$last минуту"
                 HOUR -> "$last час"
                 DAY -> "$last день"
-                YEAR -> "$last год"
             }
         else if ((last < 5 && last != 0) && (mod < 10 || mod > 20)
         )
@@ -94,7 +90,6 @@ enum class TimeUnits {
                 MINUTE -> "$abs минуты"
                 HOUR -> "$abs часа"
                 DAY -> "$abs дня"
-                YEAR -> "$abs года"
             }
         else
             when (this) {
@@ -102,7 +97,6 @@ enum class TimeUnits {
                 MINUTE -> "$abs минут"
                 HOUR -> "$abs часов"
                 DAY -> "$abs дней"
-                YEAR -> "$abs лет"
             }
     }
 }
