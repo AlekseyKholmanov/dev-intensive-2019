@@ -7,7 +7,7 @@ object Utils {
         else {
             val parts = fullName.split(" ")
             val firstName = parser(parts[0])
-            val lastName = if (parts.count() == 1) "null" else parser(parts[1])
+            val lastName = if (parts.count() == 1) null else parser(parts[1])
             firstName to lastName
         }
     }
@@ -22,9 +22,8 @@ object Utils {
     }
 
 
-    private fun parser(arg: String): String {
-        return if (arg.isEmpty()) "null"
+    private fun parser(arg: String): String? {
+        return if (arg.isEmpty()) null
         else arg
-
     }
 }
