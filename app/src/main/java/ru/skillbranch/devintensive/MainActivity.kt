@@ -32,7 +32,9 @@ class MainActivity : AppCompatActivity() {
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
+        val textValue = savedInstanceState?.getString("TEXT_VALUE") ?: ""
         benderObj = Bender(Bender.Status.valueOf(status), Bender.Question.valueOf(question ))
+        et_text.setText(textValue)
         val (r,g,b) = benderObj.status.color
         benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
         textTxt.text = benderObj.askQuestion()
@@ -48,8 +50,9 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
-        outState?.putString("STATUS", benderObj.status.name)
-        outState?.putString("QUESTION", benderObj.question.name)
+        outState.putString("STATUS", benderObj.status.name)
+        outState.putString("QUESTION", benderObj.question.name)
+        outState.putString("TEXT_VALUE", messageEt.text.toString())
         Log.d("M_MainActivity","${benderObj.status.name} ${ benderObj.question.name}")
     }
 
