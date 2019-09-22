@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.utils
 
+import java.lang.StringBuilder
+
 object Utils {
     fun parseFullName(fullName: String?): Pair<String?, String?> {
         return if (fullName.isNullOrBlank())
@@ -13,10 +15,10 @@ object Utils {
     }
 
     fun transliteration(payload: String, divider: String = " "): String {
-        var translit = ""
+        val builder = StringBuilder()
         for (char in payload) {
             val c = char.toString().toLowerCase()
-            translit +=
+            builder.append(
                 if (char == ' ')
                     divider
                 else if (c in dict) {
@@ -28,8 +30,9 @@ object Utils {
                 } else {
                     char
                 }
+            )
         }
-        return translit
+        return builder.toString()
     }
 
     fun toInitials(firstName: String?, lastName: String?): String? {
